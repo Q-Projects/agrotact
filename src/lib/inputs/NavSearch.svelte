@@ -1,8 +1,8 @@
 <script>
-	import { slide } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	export let name = 'look';
-	export let holder = 'Name, Category , Quantity ...etc';
+	export let holder = 'Name, Category, Quantity ...etc';
 	let open = false;
 
 	const toggle = () => (open = !open);
@@ -13,8 +13,8 @@
 </script>
 
 <aside>
-	<button on:click={toggle}> L </button>
-	{#if open}
+	
+	{#if !open}
 		<input
 			transition:slide={{ delay: 250, duration: 300, easing: quintOut, axis: 'x' }}
 			on:change={handleChange}
@@ -22,6 +22,9 @@
 			{name}
 			placeholder={holder}
 		/>
+		<button on:click={toggle}> Search </button>
+	{:else}
+		<button transition:fade on:click={toggle}> Looo </button>
 	{/if}
 </aside>
 

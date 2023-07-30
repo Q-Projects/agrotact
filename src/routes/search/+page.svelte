@@ -1,12 +1,31 @@
 <script>
 	export let data;
-	import PublicTable from '../../lib/tables/PublicTable.svelte';
-
+	import PublicTable from '$lib/tables/PublicTable.svelte';
+	import SearchBar from '$lib/inputs/SearchBar.svelte';
 	const items = data.products;
+
+	let cardStyle = 1;
+
+	function search(e) {
+		console.log(e.detail);
+	}
+
+	function changeCard(e) {
+		cardStyle = parseInt(e.detail);
+	}
+	function sortList(e) {
+		console.log(e.detail);
+	}
 </script>
 
+<h1>Search Products</h1>
+
 <div class="products">
-	<PublicTable {items} />
+	<div>
+		<SearchBar on:sortBy={sortList} on:search={search} on:style={changeCard} />
+		<PublicTable {cardStyle}  items={items} />
+	</div>
+
 	<form>
 		<h1>Filter Box</h1>
 		<label for="country">country</label>

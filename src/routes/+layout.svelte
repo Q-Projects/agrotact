@@ -21,9 +21,7 @@
 	<slot />
 </main>
 
-{#if b}
-	<Footer />
-{/if}
+<Footer routes={data.shortcuts} />
 
 <style>
 	main {

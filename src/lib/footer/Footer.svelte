@@ -1,61 +1,46 @@
 <script>
 	import FooterAccordion from '$lib/footer/FooterAccordion.svelte';
 
-	const footerData = {
-		Categories: [
-			{ name: 'Product', href: '/search/product' },
-			{ name: 'Product Type 2', href: '/search/product/arachide' },
-			{ name: 'Product Type 3', href: '/' },
-			{ name: 'Product Type 4', href: '/' }
-		],
-		About: [
-			{ name: 'About Us', href: '/about' },
-			{ name: 'Our Services', href: '/about#services' },
-			{ name: 'Terms & Conditions', href: '/terms' },
-			{ name: 'Privacy Policy', href: '/trems#link4' },
-			{ name: 'Customer Policy', href: '/terms#link3' }
-		],
-		Support: [
-			{ name: 'Community', href: '/about' },
-			{ name: 'Feedback', href: '/about#faq' },
-			{ name: 'Products', href: '/' },
-			{ name: 'F.A.Q', href: '/about#faq' }
-		],
-		Customers: [
-			{ name: 'Sign In', href: '/account' },
-			{ name: 'Register', href: '/account' },
-			{ name: 'Get to Us', href: '/' },
-			{ name: 'Suppliers', href: '/search/supplier' },
-			{ name: 'Shop', href: '/search/product' }
-		]
-	};
+	export let routes;
+	
 </script>
 
 <footer>
-	<div class="footer-container">
-		{#each Object.keys(footerData) as group (group)}
-			<section>
-				<h2>{group}</h2>
-				{#each footerData[group] as { name, href }, i (name)}
-					<a {href}>{name}</a>
-				{/each}
-			</section>
-		{/each}
+	{#if routes}
+		<div class="footer-container">
+			{#each Object.keys(routes) as group (group)}
+				<section>
+					<h2>{group}</h2>
+					{#each routes[group] as { name, href }, i (name)}
+						<a {href}>{name}</a>
+					{/each}
+				</section>
+			{/each}
 
-		<aside class="social">
-			<ul>
-				<li>fb</li>
-				<li>Tw</li>
-				<li>Wa</li>
-				<li>In</li>
-			</ul>
-			<p>Last update: 14/07/2023 10:55pm</p>
+			<aside class="social">
+				<ul>
+					<li>fb</li>
+					<li>Tw</li>
+					<li>Wa</li>
+					<li>In</li>
+				</ul>
+				<p>Last update: 14/07/2023 10:55pm</p>
+				<p>&copy; 2023 Talla Enterprises & fils .Ltd - All rights reserved</p>
+				<p>
+					Our vision is to serve africains and the world. We are open 24/5 but u can get to us
+					anytime
+				</p>
+			</aside>
+		</div>
+	{:else}
+		<div class="footer-account">
 			<p>&copy; 2023 Talla Enterprises & fils .Ltd - All rights reserved</p>
-			<p>
-				Our vision is to serve africains and the world. We are open 24/5 but u can get to us anytime
-			</p>
-		</aside>
-	</div>
+		<p>  
+			<b><a style="color: green;" href="/terms">Terms & Conditions</a> </b> and
+			<b><a style="color: green;" href="/terms">Customers Policy</a></b>
+		</p>
+		</div>
+	{/if}
 </footer>
 
 <style>
@@ -105,6 +90,14 @@
 		overflow-y: hidden;
 		text-align: center;
 		border-bottom: 1px solid var(--bder-bg);
+	}
+
+	.footer-account {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
 	}
 
 	@media screen and (min-width: 768px) {

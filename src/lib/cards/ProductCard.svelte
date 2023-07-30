@@ -2,29 +2,34 @@
 <script>
     import img2 from '$lib/assets/headers/gflower.jpg';
 
+    export let structure = 0; 
+    export let name;
+    export let quantity;
+    export let price;
+    export let discount;
+    export let promotion;
+    export let towns
+
     const redirect = () => {
 
     }
 </script>
 
-<div role="button" tabindex="0" on:keypress={redirect} on:click={redirect}>
-    <span>-4%</span>
+<button class={structure === 1 ? 'cardOne' : 'cardTwo' } on:click={redirect}>
+    {#if promotion} 
+        <span>-{discount}%</span>
+    {/if}
     <img src={img2} alt="n" />
-    <small>dispo: Garoua, Maroa, Bertoa</small>
-    <h4>Arachide Du Nord</h4>
-    <p>Quantity: 6 tonnes</p>
+    <small>{towns.join(', ')}</small>
+    <h4>{name}</h4>
+    <p>Quantity: {quantity}</p>
     <p>possible en details  </p>
-    <small>300,000fcfa</small>
-</div>
+    <p>{price} xfa</p>
+</button>
 
 <style>
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
+    button {
         width: 100%;
-        height: 360px;
         padding: 1rem;
         border-radius: 7px;
         border: 1px solid #ddd;
@@ -32,13 +37,13 @@
         position: relative;
         font-size: smaller;
         cursor: pointer;
-        transition: all 0.2s ease;
+        background: transparent;
+        color: black;
     }
 
     img {
         height: 200px;
         width: 100%;
-        transition: 0.4s ease-in;
     }
 
     span {
@@ -53,13 +58,28 @@
         text-align: center;
     }
 
-    div:hover p {
-        color: red;
+    small {
+        text-overflow: ellipsis;
     }
 
-    div:hover small {
-        color: darkcyan;
-        font-weight: bolder;
+    .cardOne {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 380px;
     }
 
+    .cardTwo {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 240px;
+    }
+
+    .cardTwo img {
+        width: 47%;
+        height: 100%;
+    }
 </style>

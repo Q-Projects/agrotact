@@ -1,24 +1,17 @@
 <script>
 	import ProductCard from '$lib/cards/ProductCard.svelte';
-	import SearchBar from '$lib/inputs/SearchBar.svelte';
 	import Pagination from '$lib/pagination.svelte';
 
 	export let items;
-	$: itemsCount = items.length;
+	export let cardStyle;
+
 	let currentNumber = 1;
 	let numberPerPage = 10;
+	$: itemsCount = items.length;
 	$: numberOfPages = Math.ceil(itemsCount / numberPerPage);
-
-	function search(e) {
-		console.log(e.detail);
-	}
-
-	function changeCard(e) {
-		console.log(e.detail);
-	}
+	$: currentItems = [...items.slice((currentNumber - 1) * numberPerPage, currentNumber * numberPerPage )];
 
 	function changePage(e) {
-		console.log('changing page to: ' + e.detail);
 		currentNumber = e.detail;
 	}
 
@@ -26,28 +19,28 @@
 		numberPerPage = parseInt(e.detail);
 	}
 
-	function sortList(e) {
-		console.log(e.detail);
-	}
+	$: console.log(
+		(currentNumber - 1) * numberPerPage,
+		currentNumber * numberPerPage -1,
+		items.slice((currentNumber - 1) * numberPerPage, currentNumber * (numberOfPages - 1))
+	);
 </script>
 
-<div>
-	<SearchBar on:sortBy={sortList} on:search={search} on:style={changeCard} />
-
-	<div class="cards-container">
-		{#each items as item, index (item.id)}
-			<ProductCard />
-		{/each}
-	</div>
-
-	<Pagination on:page={changePage} on:per={changePerPage} {numberOfPages} {currentNumber} />
+<div class={cardStyle === 1 ? 'cards-container' : 'cards-container2'}>
+	{#each currentItems as item, index (item.id)}
+		<ProductCard {...item} structure={cardStyle} />
+	{/each}
 </div>
 
+<Pagination on:page={changePage} on:per={changePerPage} {numberOfPages} {currentNumber} />
+
 <style>
-	.cards-container {
+	.cards-container,
+	.cards-container2 {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 0.4rem;
+		transition: all 0.2s ease-in-out;
 	}
 
 	@media screen and (min-width: 290px) {
@@ -59,6 +52,10 @@
 	@media screen and (min-width: 768px) {
 		.cards-container {
 			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.cards-container2 {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 

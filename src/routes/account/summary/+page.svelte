@@ -1,6 +1,6 @@
 <script>
 	let subpage = '';
-	let pageList = ['profile','products','suppliers', 'subscription', 'announcements', 'clients'];
+	let pageList = ['Report','profile','products','suppliers', 'subscription', 'announcements', 'clients'];
 
 	function changePage(a) {
 		subpage = a.target.innerHTML;
@@ -27,7 +27,8 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		max-width: var(--max-wd, 1400px);
-		width: 100%;
+		width: calc(100% - 2rem);
+		margin: 3rem auto;
         border-radius: 12px;
 		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 	}
@@ -42,7 +43,7 @@
 	}
 
     .nav {
-        background: var( --hvy-bg, red);
+        background: var( --hvy-bg, darkgreen);
         border-radius: 12px 12px 0 0 ;
     }
 
