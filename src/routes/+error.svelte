@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 
 	import img from '$lib/assets/farmer404.png';
+
+	const goBack = () => window.history.go(-1);
 </script>
 
 <div class="container">
@@ -15,7 +17,7 @@
 	</aside>
 	<img src={img} alt="404-img" />
     <div class="links">
-        <a href="/">Home Page</a> <a href="/">Go Back</a>
+        <a href="/">Home Page</a> <a href={'.'} on:click={goBack}>Go Back</a>
     </div>
 </div>
 

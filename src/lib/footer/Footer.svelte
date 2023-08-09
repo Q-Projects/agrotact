@@ -2,63 +2,54 @@
 	import FooterAccordion from '$lib/footer/FooterAccordion.svelte';
 
 	export let routes;
-	
 </script>
 
-<footer>
-	{#if routes}
-		<div class="footer-container">
-			{#each Object.keys(routes) as group (group)}
-				<section>
-					<h2>{group}</h2>
-					{#each routes[group] as { name, href }, i (name)}
-						<a {href}>{name}</a>
-					{/each}
-				</section>
-			{/each}
+{#if routes}
+	<footer class="footer-container">
+		{#each Object.keys(routes) as group (group)}
+			<section>
+				<h2>{group}</h2>
+				{#each routes[group] as { name, href }, i (name)}
+					<a {href}>{name}</a>
+				{/each}
+			</section>
+		{/each}
 
-			<aside class="social">
-				<ul>
-					<li>fb</li>
-					<li>Tw</li>
-					<li>Wa</li>
-					<li>In</li>
-				</ul>
-				<p>Last update: 14/07/2023 10:55pm</p>
-				<p>&copy; 2023 Talla Enterprises & fils .Ltd - All rights reserved</p>
-				<p>
-					Our vision is to serve africains and the world. We are open 24/5 but u can get to us
-					anytime
-				</p>
-			</aside>
-		</div>
-	{:else}
-		<div class="footer-account">
+		<aside class="social">
+			<ul>
+				<li>fb</li>
+				<li>Tw</li>
+				<li>Wa</li>
+				<li>In</li>
+			</ul>
+			<p>Last update: 14/07/2023 10:55pm</p>
 			<p>&copy; 2023 Talla Enterprises & fils .Ltd - All rights reserved</p>
-		<p>  
+			<p>
+				Our vision is to serve africains and the world. We are open 24/5 but u can get to us anytime
+			</p>
+		</aside>
+	</footer>
+{:else}
+	<footer class="footer-account">
+		<p>&copy; 2023 Talla Enterprises & fils .Ltd - All rights reserved</p>
+		<p>
 			<b><a style="color: green;" href="/terms">Terms & Conditions</a> </b> and
 			<b><a style="color: green;" href="/terms">Customers Policy</a></b>
 		</p>
-		</div>
-	{/if}
-</footer>
+	</footer>
+{/if}
 
 <style>
-	footer {
-		width: 100%;
-		background: var(--hvy-grn-bg, transparent);
-		color: var(--ylw-bg, inherit);
-	}
-
-	.footer-container {
+	footer  {
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-between;
 		align-items: flex-start;
 		gap: 1.6rem;
 		margin: 0 auto;
-		padding: 1rem;
+		padding: 2rem;
 		max-width: var(--max-wd, 1400px);
+		width: 100%;
 	}
 
 	aside {
@@ -93,16 +84,16 @@
 	}
 
 	.footer-account {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		flex-flow: column;
 		align-items: center;
-		padding: 1rem;
+		gap: 0.2rem;
+		padding: 0;
 	}
 
 	@media screen and (min-width: 768px) {
-		.footer-container {
+		footer {
 			flex-flow: row wrap;
+			justify-content: space-between;
 		}
 
 		aside {
@@ -110,6 +101,7 @@
 			align-items: flex-start;
 			width: fit-content;
 			text-align: left;
+			margin: 0 auto;
 		}
 
 		ul {

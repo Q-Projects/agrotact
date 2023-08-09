@@ -35,6 +35,11 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    color: darkgreen;
+    font-weight: bolder;
+}
+
 ul {
     list-style: none;
 }

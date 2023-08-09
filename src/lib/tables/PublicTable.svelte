@@ -18,12 +18,6 @@
 	function changePerPage(e) {
 		numberPerPage = parseInt(e.detail);
 	}
-
-	$: console.log(
-		(currentNumber - 1) * numberPerPage,
-		currentNumber * numberPerPage -1,
-		items.slice((currentNumber - 1) * numberPerPage, currentNumber * (numberOfPages - 1))
-	);
 </script>
 
 <div class={cardStyle === 1 ? 'cards-container' : 'cards-container2'}>

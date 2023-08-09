@@ -2,20 +2,13 @@
 <script>
     import img2 from '$lib/assets/headers/gflower.jpg';
 
-    export let structure = 0; 
-    export let name;
-    export let quantity;
-    export let price;
-    export let discount;
-    export let promotion;
-    export let towns
+    export let info = {};
+    export let structure = 1;
+    const {id, category , discount , quantity , name, promotion, towns, price } = info;
 
-    const redirect = () => {
-
-    }
 </script>
 
-<button class={structure === 1 ? 'cardOne' : 'cardTwo' } on:click={redirect}>
+<a href={'/search/product-'+id+'-'+category} class={structure === 1 ? 'cardOne' : 'cardTwo' }>
     {#if promotion} 
         <span>-{discount}%</span>
     {/if}
@@ -25,10 +18,10 @@
     <p>Quantity: {quantity}</p>
     <p>possible en details  </p>
     <p>{price} xfa</p>
-</button>
+</a>
 
 <style>
-    button {
+    a {
         width: 100%;
         padding: 1rem;
         border-radius: 7px;
