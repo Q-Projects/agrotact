@@ -1,7 +1,6 @@
 <script>
 	export let data;
 	import PublicTable from '$lib/tables/PublicTable.svelte';
-	import SearchBar from '$lib/inputs/SearchBar.svelte';
 	const items = data.products;
 
 	let cardStyle = 1;
@@ -22,8 +21,8 @@
 
 <div class="products">
 	<div>
-		<SearchBar on:sortBy={sortList} on:search={search} on:style={changeCard} />
-		<PublicTable {cardStyle}  items={items} />
+		<!-- <SearchBar on:sortBy={sortList} on:search={search} on:style={changeCard} /> -->
+		<PublicTable {cardStyle} {items} />
 	</div>
 
 	<form>
@@ -32,7 +31,6 @@
 		<input type="text" name="country" id="" />
 		<label for="town">town / city</label>
 		<input type="text" name="town" id="" />
-
 		<h2>Product Details</h2>
 		<label for="type">Type</label>
 		<input type="text" name="type" id="" />
@@ -41,8 +39,6 @@
 		<input type="text" name="time" id="" />
 		<label for="quantity">quantity</label>
 		<input type="text" name="quantity" />
-
-		<button>Search</button>
 	</form>
 </div>
 

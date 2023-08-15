@@ -7,44 +7,22 @@
 </script>
 
 <div class="container">
-	<div class="product-info">
-		<ImgDisplay img={img} />    
-		<Details product={data.product} />
-	</div>
+	<ImgDisplay {img} />
+	<Details product={data.product} />
 	<Related />
 </div>
 
 <style>
-    .container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        width: 100%;
-    }
-
-	.product-info {
+	.container {
 		display: grid;
 		grid-template-columns: 1fr;
-		justify-content: space-between;
 		gap: 1rem;
 		width: 100%;
 	}
 
-
 	@media screen and (min-width: 768px) {
-
-        .container {
-            grid-template-columns: 3fr 1fr;
-        }
-
-		.product-info {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	@media ( min-width: 968px) {
-		.product-info {
-			grid-template-columns: 1fr 2fr;
+		.container {
+			grid-template-columns: 2fr 2fr 1fr;
 		}
 	}
 </style>

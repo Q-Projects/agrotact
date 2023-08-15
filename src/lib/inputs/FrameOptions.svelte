@@ -1,55 +1,98 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+	import { fade } from 'svelte/transition';
+
 	export let options = [];
-    export let current = 1
+	export let query;
+	let widx = 0;
+	let open = false;
+
+	const dispatch = createEventDispatcher();
 
 	function clicked(e) {
-		console.log(e.target.innerHTML);
-        current = e.target.innerHTML.toLowerCase();
+		dispatch('frame', e.target.innerHTML);
+		open = !open;
 	}
 </script>
 
-<div>
-	{#each options as option }
-		<button class={current === option ? 'underline' : null } on:click={clicked}>{option}</button>
-	{/each}
+<svelte:window bind:innerWidth={widx} />
+
+<div role="button" tabindex="0" on:mouseleave={() => (open = false)}>
+	<p><button class="underline" on:click={clicked}>{query}</button></p>
+	{#if open || widx > 768}
+		<section>
+			<button class="underline" on:click={clicked}>{query}</button>
+			{#each options as option}
+				<button
+					in:fade={{ duration: 400 }}
+					out:fade={{ duration: 5000 }}
+					class={query === option ? 'underline' : null}
+					on:click={clicked}>{option}</button
+				>
+			{/each}
+		</section>
+	{/if}
 </div>
 
-<select name="" id="">
-    {#each options as option }
-		<option class={current === option ? 'underline' : null } on:click={clicked}>{option}</option>
-	{/each}
-</select>
-
 <style>
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 3px solid orangered;
+		position: relative;
+	}
 
-    div {
-        display: none;
-    }
+	p {
+		display: inline-block;
+	}
 
-    select {
-        width: 70px;
-    }
+	section {
+		position: absolute;
+		top: -20%;
+		right: 0;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		height: 160px;
+		overflow-y: auto;
+		background: white;
+		box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	}
 
 	button {
 		background: transparent;
 		color: inherit;
-        text-transform: capitalize;
-        padding: 10px;
-        border-radius: 0px;
-        border-bottom: 4px solid orangered;
+		text-transform: capitalize;
+		width: 120px;
+		padding: 10px;
+		margin: 0;
+		border-radius: 0px;
+		transition: background 0.3s linear;
 	}
 
-    .underline {
-        border-bottom: none;
-        transition: all 0.3s linear;
-    }
+	.underline {
+		background: orangered;
+		color: whitesmoke;
+		font-weight: bolder;
+	}
 
-    @media (min-width: 768px ) {
-        div {
-            display: inline-block;
-        }
-        select {
-            display: none;
-        }
-    }
+	@media (min-width: 768px) {
+		section {
+			position: static;
+			flex-direction: row;
+			align-items: flex-end;
+			height: fit-content;
+			box-shadow: none;
+		}
+
+		p {
+			display: none;
+		}
+
+		button {
+			width: fit-content;
+		}
+	}
 </style>

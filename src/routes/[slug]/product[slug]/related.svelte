@@ -23,6 +23,7 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
+        background: red;
     }
     h2 {
         position: relative;

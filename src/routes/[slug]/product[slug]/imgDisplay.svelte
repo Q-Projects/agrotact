@@ -4,18 +4,27 @@
 </script>
 
 <aside>
-    <img class="big-img" src={img} alt="flower" />
+    <div>
+        <img class="big-img" src={img} alt="flower" />
+    </div>
     <img class="sml-img" src={img} alt="flower" />
-    <img class="sml-img" src={img} alt="flower" />
+    <img class="sml-img" src={img} alt="flower" /> juiii
 </aside>
 
 <style>
     aside {
         display: flex;
-        flex-flow: column wrap;
-        width: calc(100% - 50px);
-        height: 320px;
+        flex-flow: column ;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: fit-content;
         gap: 0.5rem;
+    }
+
+    div {
+        background: yellow;
+        border: 1px solid #ddd;
     }
 
     .big-img {

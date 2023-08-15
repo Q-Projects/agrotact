@@ -1,11 +1,11 @@
 <script>
-	import Card from '../lib/Card.svelte';
 	import HomeHeader from '../lib/headers/HomeHeader.svelte';
-	import FrameOptions from '../lib/inputs/FrameOptions.svelte';
-	import ProductFrame from '../lib/frames/productFrame.svelte';
+	import ProductFrame from '../lib/frames/ProductFrame.svelte';
+	import SupplierFrame from '../lib/frames/SupplierFrame.svelte';
 
-	const category = ['equipements or tools', 'crops', 'machines', 'meat', 'fruits', 'seed'];
-	const days = ['this month','this week','today']
+	const category = ['equipements or tools', 'crops', 'machines', 'meat', 'fruits', 'seeds'];
+	const days = ['this month', 'this week', 'today'];
+	const suppliers = ['best','new','highly rated'];
 </script>
 
 <svelte:head>
@@ -18,6 +18,7 @@
 <ProductFrame name={'Looking for'} options={category} />
 <ProductFrame name={'Recently Published'} options={days} />
 
+<SupplierFrame name={'Suppliers'} options={suppliers} />
 
 <div class="page-heading">
 	<a href="/">
@@ -32,17 +33,6 @@
 	<ul>
 		<li>All</li>
 	</ul>
-</div>
-
-<div class="cards-container-II">
-	<Card />
-	<Card />
-	<Card />
-	<Card />
-	<Card />
-	<Card />
-	<Card />
-	<Card />
 </div>
 
 <div class="page-heading">
@@ -65,42 +55,13 @@
 		align-items: center;
 	}
 
-	.cards-container-II {
-		display: grid;
-		grid-template-columns: repeat(10, 180px);
-		grid-template-rows: 1fr;
-		width: 100%;
-		max-width: var(--max-wd, 1400px);
-		overflow-x: scroll;
-		justify-content: start;
-		align-items: start;
-		gap: 0.5rem;
-		margin: 1rem auto;
-		padding: 2rem;
-	}
-
-	.cards-container-II {
-		grid-template-columns: repeat(10, 200px);
-	}
-
 	ul {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 	}
 
-	@media screen and (min-width: 768px) {
-		.cards-container {
-			grid-template-columns: repeat(3, 1fr);
-			overflow-x: hidden;
-		}
-	}
-
 	@media screen and (min-width: 968px) {
-		.cards-container {
-			grid-template-columns: repeat(5, 1fr);
-		}
-
 		ul {
 			flex-direction: row;
 		}

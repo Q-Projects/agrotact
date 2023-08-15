@@ -13,7 +13,7 @@
         <span>-{discount}%</span>
     {/if}
     <img src={img2} alt="n" />
-    <small>{towns.join(', ')}</small>
+    <small>{towns.join(',')}</small>
     <h4>{name}</h4>
     <p>Quantity: {quantity}</p>
     <p>possible en details  </p>

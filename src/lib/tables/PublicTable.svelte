@@ -1,4 +1,5 @@
 <script>
+	import { afterUpdate } from 'svelte';
 	import ProductCard from '$lib/cards/ProductCard.svelte';
 	import Pagination from '$lib/pagination.svelte';
 
@@ -11,6 +12,11 @@
 	$: numberOfPages = Math.ceil(itemsCount / numberPerPage);
 	$: currentItems = [...items.slice((currentNumber - 1) * numberPerPage, currentNumber * numberPerPage )];
 
+	afterUpdate(()=>{
+		console.log('Hydration occurred')
+		window.scrollTo(10,0);
+	})
+
 	function changePage(e) {
 		currentNumber = e.detail;
 	}
@@ -22,7 +28,7 @@
 
 <div class={cardStyle === 1 ? 'cards-container' : 'cards-container2'}>
 	{#each currentItems as item, index (item.id)}
-		<ProductCard {...item} structure={cardStyle} />
+		<ProductCard info={item} structure={cardStyle} />
 	{/each}
 </div>
 
